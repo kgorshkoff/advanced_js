@@ -10,8 +10,8 @@ const renderProduct = (title, price, img = 'https://placehold.it/192x192') => {
             <h3>${title}</h3>
             <img src="${img}" alt="">
             <div class="product-container">
-              <p>${price}₽</p>
-              <button class="btn-buy">Добавить в корзину</button>
+              <div class="product-price"><span>${price}<b>₽</b></span></div>
+              <i class="fas fa-shopping-cart fa-2x"><button class="btn-buy"></button></i>
             </div>
           </div>`;
 };
@@ -20,8 +20,14 @@ const renderProducts = (list) => {
   const productList = list.map(({title, price}) => {
       return renderProduct(title, price);
   });
-  // console.log(productList);
   document.querySelector('.products').innerHTML = productList.join('');
 }
+//
+// const renderProducts = (list) => {
+//   const productList = list.map(({title, price}) => {
+//       return renderProduct(title, price);
+//   });
+//   document.querySelector('.products').innerHTML = productList.join('');
+// }
 
 renderProducts(products);

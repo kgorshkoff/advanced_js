@@ -109,8 +109,12 @@ class BasketList {
     }
   }
 
-  remove(item) {
-
+  remove(evt) {
+    if (evt.target.classList.contains('delete')) {
+      let filtered = this.items.filter(function(el) { return el.id != evt.target.dataset['id']; });
+      this.items = filtered;
+      this._render();
+    }
   }
 
   get_or_create(product) {
@@ -127,16 +131,17 @@ class BasketList {
 
   _handleActions() {
     document.querySelector('.btn-cart').addEventListener('click', () => {
-      let element = document.querySelector('.container')
+      let element = document.querySelector('.container');
       if (element.classList.contains('d-none')) {
         element.classList.remove('d-none');
       } else {
         element.classList.add('d-none');
       }
     });
-    // document.querySelector('.cart-items').addEventListener('click', () = {
-    //   let element = document
-    // });
+    document.querySelector(this.container).addEventListener('click', () => {
+      let element = document.querySelector('.delete');
+      console.log(1)
+    });
   }
 
   calcTotalProductsPrice() {
@@ -144,13 +149,14 @@ class BasketList {
   }
 
   _render() {
-    let htmlBlock = document.querySelector(this.container);
-    htmlBlock.innerHTML = '';
+    let block = document.querySelector(this.container);
+    block.addEventListener('click', evt => {this.remove(evt)})
+    block.innerHTML = '';
     let htmlStr = '';
     this.items.forEach(el => {
       htmlStr += el._render()
     })
-    htmlBlock.innerHTML = `
+    block.innerHTML = `
         <div class="row justify-content-end cart" >
             <div class="col-1">Товар</div>
             <div class="col-1">Количество</div>
@@ -179,7 +185,7 @@ class BasketItem {
       <div class="col-1">${this.title}</div>
       <div class="col-1">${this.quantity}</div>
       <div class="col-1">${this.price}</div>
-      <div class="col-1 delete">Удалить</div>
+      <div class="col-1 delete"><button type="button" class="btn-sm btn-warning delete" data-id="${this.id}">удалить</button></div>
     </div>
     `;
   }

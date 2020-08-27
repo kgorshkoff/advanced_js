@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    body {
+      width: 50%;
+      padding-left: 25%;
+      /*padding: 80px;*/
+    }
+    header h3 {
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      margin: auto;
+      justify-content: space-between;
+    }
+    .flex-container {
+      text-justify: distribute;
+      text-align: center;
+    }
+    .flex-container > span {
+      display: inline-block;
+    }
+    .total {
+      float: right;
+      width: 25%;
+      margin: auto;
+      text-align: right;
+    }
+    .total > span {
+      display: block;
+    }
+
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<header>
+    <h3>Бургерная</h3>
+    <hr>
+</header>
+<body>
+<div class="main">
+    <div class="container">
+        <div class="flex-container" id="burgers">
+            <span><i>Бургеры</i></span>
+        </div>
+        <div class="flex-container" id="stuffings">
+            <i>Начинки</i>
+        </div>
+        <div class="flex-container" id="toppings">
+            <i>Топпинги</i>
+        </div>
+    </div>
+    <div class="total">
+        <hr>
+        <input type="button" id="calc" value="Посчитать!">
+    </div>
+</div>
+</body>
+<script src="main.js"></script>
+</html>

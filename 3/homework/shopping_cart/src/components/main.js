@@ -86,7 +86,7 @@ class ProductItem {
 
 
 class BasketList {
-  constructor(container = '.cart') {
+  constructor(container = '.container') {
     this.container = container;
     this.items = [];
     this.total = 0;
@@ -127,13 +127,16 @@ class BasketList {
 
   _handleActions() {
     document.querySelector('.btn-cart').addEventListener('click', () => {
-      let element = document.querySelector('.cart')
-      if (element.style.display === 'none') {
-        element.style.display = 'block';
+      let element = document.querySelector('.container')
+      if (element.classList.contains('d-none')) {
+        element.classList.remove('d-none');
       } else {
-        element.style.display = 'none';
+        element.classList.add('d-none');
       }
     });
+    // document.querySelector('.cart-items').addEventListener('click', () = {
+    //   let element = document
+    // });
   }
 
   calcTotalProductsPrice() {
@@ -148,10 +151,14 @@ class BasketList {
       htmlStr += el._render()
     })
     htmlBlock.innerHTML = `
-        <table class="cart-item">
-            ${htmlStr}
-        </table>
-        <div class="total">${this.calcTotalProductsPrice()}<div>`;
+        <div class="row justify-content-end cart" >
+            <div class="col-1">Товар</div>
+            <div class="col-1">Количество</div>
+            <div class="col-1">Цена</div>
+            <div class="col-1">Удалить?</div>
+        </div>
+        ${htmlStr}
+        <div class="row justify-content-end cart total">${this.calcTotalProductsPrice()}<div>`;
   }
 }
 
@@ -168,12 +175,12 @@ class BasketItem {
 
   _render() {
     return `
-    <tr id="${this.id}">
-        <td id="title">${this.title}</td>
-        <td id="quantity">${this.quantity}</td>
-        <td id="price">${this.price}</td>
-        <td id="delete">Удалить</td>
-    </tr>
+    <div class="row justify-content-end cart">
+      <div class="col-1">${this.title}</div>
+      <div class="col-1">${this.quantity}</div>
+      <div class="col-1">${this.price}</div>
+      <div class="col-1 delete">Удалить</div>
+    </div>
     `;
   }
 }

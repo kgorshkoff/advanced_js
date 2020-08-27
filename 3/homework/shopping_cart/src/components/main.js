@@ -89,8 +89,6 @@ class BasketList {
   constructor(container = '.container') {
     this.container = container;
     this.items = [];
-    this.total = 0;
-    this.invisible = false;
     this._handleActions();
   }
 
@@ -103,7 +101,7 @@ class BasketList {
         price: dataset.price,
         img: dataset.img,
       }
-      let item = this.get_or_create(product);
+      let item = this.getOrCreate(product);
       if (item) {this.items.push(item)};
       this._render();
     }
@@ -117,12 +115,9 @@ class BasketList {
     }
   }
 
-  get_or_create(product) {
+  getOrCreate(product) {
     let item = this.items.find(element => element.id == product.id)
     if (item) {
-      const block = document.getElementById(`${item.id}`)
-      // let newQuantity = item.quantity + 1
-      // block.innerHTML = block.innerHTML.replace(`quantity">${item.quantity}`, `quantity">${newQuantity}`)
       item.quantity++;
     } else {
       return new BasketItem(product)
@@ -157,7 +152,7 @@ class BasketList {
       htmlStr += el._render()
     })
     block.innerHTML = `
-        <div class="row justify-content-end cart" >
+        <div class="row justify-content-end cart">
             <div class="col-1">Товар</div>
             <div class="col-1">Количество</div>
             <div class="col-1">Цена</div>

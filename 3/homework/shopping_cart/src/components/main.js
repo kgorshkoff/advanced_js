@@ -92,7 +92,6 @@ class BasketList {
     this.total = 0;
     this.invisible = false;
     this._handleActions();
-    this._render();
   }
 
   add(evt) {
@@ -106,6 +105,7 @@ class BasketList {
       }
       let item = this.get_or_create(product);
       if (item) {this.items.push(item)};
+      this._render();
       this.calcTotalProductsPrice();
     }
   }
@@ -118,8 +118,8 @@ class BasketList {
     let item = this.items.find(element => element.id == product.id)
     if (item) {
       const block = document.getElementById(`${item.id}`)
-      let newQuantity = item.quantity + 1
-      block.innerHTML = block.innerHTML.replace(`quantity">${item.quantity}`, `quantity">${newQuantity}`)
+      // let newQuantity = item.quantity + 1
+      // block.innerHTML = block.innerHTML.replace(`quantity">${item.quantity}`, `quantity">${newQuantity}`)
       item.quantity++;
     } else {
       return new BasketItem(product)
@@ -138,11 +138,21 @@ class BasketList {
   }
 
   calcTotalProductsPrice() {
-    return this.items.reduce((sumPrice, { price }) => sumPrice + price, 0);
+    return this.items.reduce((sumPrice, { price, quantity }) => sumPrice + parseInt(price) * quantity, 0);
   }
 
   _render() {
-
+    let htmlBlock = document.querySelector(this.container);
+    htmlBlock.innerHTML = '';
+    let htmlStr = '';
+    this.items.forEach(el => {
+      htmlStr += el._render()
+    })
+    htmlBlock.innerHTML = `
+        <table class="cart-item">
+            ${htmlStr}
+        </table>
+        <div class="total">${this.calcTotalProductsPrice()}<div>`;
   }
 }
 
@@ -158,15 +168,14 @@ class BasketItem {
   }
 
   _render() {
-    let htmlStr = `
+    return `
     <tr id="${this.id}">
         <td id="title">${this.title}</td>
         <td id="quantity">${this.quantity}</td>
         <td id="price">${this.price}</td>
         <td id="delete">Удалить</td>
     </tr>
-    `
-    document.querySelector('.cart-item').insertAdjacentHTML('beforeend', htmlStr)
+    `;
   }
 }
 

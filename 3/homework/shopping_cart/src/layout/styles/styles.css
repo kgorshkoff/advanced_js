@@ -11,6 +11,11 @@ header{
 button{
     outline: none;
 }
+
+.cart {
+    display: none;
+}
+
 .logo{
 
     text-transform: uppercase;

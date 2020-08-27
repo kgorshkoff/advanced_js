@@ -106,7 +106,6 @@ class BasketList {
       let item = this.get_or_create(product);
       if (item) {this.items.push(item)};
       this._render();
-      this.calcTotalProductsPrice();
     }
   }
 

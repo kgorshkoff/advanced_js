@@ -86,7 +86,7 @@ class ProductItem {
 
 
 class BasketList {
-  constructor(container = '.cart-wrapper') {
+  constructor(container = '.cart') {
     this.container = container;
     this.items = [];
     this.total = 0;
@@ -104,7 +104,8 @@ class BasketList {
         price: dataset.price,
         img: dataset.img,
       }
-      this.items.push(this.get_or_create(product));
+      let item = this.get_or_create(product);
+      if (item) {this.items.push(item)};
       this.calcTotalProductsPrice();
     }
   }
@@ -116,6 +117,9 @@ class BasketList {
   get_or_create(product) {
     let item = this.items.find(element => element.id == product.id)
     if (item) {
+      const block = document.getElementById(`${item.id}`)
+      let newQuantity = item.quantity + 1
+      block.innerHTML = block.innerHTML.replace(`quantity">${item.quantity}`, `quantity">${newQuantity}`)
       item.quantity++;
     } else {
       return new BasketItem(product)
@@ -155,11 +159,11 @@ class BasketItem {
 
   _render() {
     let htmlStr = `
-    <tr>
-        <td>${this.title}</td>
-        <td>${this.quantity}</td>
-        <td>${this.price}</td>
-        <td></td>
+    <tr id="${this.id}">
+        <td id="title">${this.title}</td>
+        <td id="quantity">${this.quantity}</td>
+        <td id="price">${this.price}</td>
+        <td id="delete">Удалить</td>
     </tr>
     `
     document.querySelector('.cart-item').insertAdjacentHTML('beforeend', htmlStr)

@@ -1,42 +1,49 @@
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses'
 
-let getRequest = (url, cb) => {
-  let xhr = new XMLHttpRequest();
-  xhr.open('GET', url, true);
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      if (xhr.status !== 200) {
-        console.log('Error!')
-      } else
-        cb(xhr.responseText);
-    }
-  }
-  xhr.send();
+
+let getRequest = (url) => {
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.onreadystatechange = () => {
+            if(xhr.readyState === 4){
+                if(xhr.status !== 200){
+                    reject('Error');
+                } else {
+                    resolve(xhr.responseText);
+                }
+            }
+        };
+        xhr.send();
+    })
 };
 
 class ProductList {
 
-  constructor(container = '.products') {
+  constructor(container = '.products', Basket = new BasketList()) {
     this.container = container;
     this.goods = [];
-    this.basket = null;
     this.allProducts = [];
+    this.basket = Basket;
 
-    this.fetchProducts();
+    this.getProducts()
+      .then(data => {
+        this.goods = [...data];
+        this.render();
+      });
+    // getRequest(`${API}/catalogData.json`).
+    // then(this.render).
+    // then(this.calcTotalProductsPrice);
   }
 
-  fetchProducts() {
-    return new Promise(((resolve, reject) => {
-      getRequest(`${API}/catalogData.json`, (data) => {
-        if (data) {
-          resolve(this.goods = JSON.parse(data));
-          this.render();
-          this.calcTotalProductsPrice();
-        } else {
-          reject('No data!');
-        }
-      })}));
+  getProducts() {
+    return fetch(`${API}/catalogData.json`)
+        .then(result => result.json())
+        .catch(error => {
+          console.log(error);
+        });
   }
+
 
   render() {
     const block = document.querySelector(this.container);
@@ -47,7 +54,6 @@ class ProductList {
       this.allProducts.push(productObject);
       block.insertAdjacentHTML('beforeend', productObject.render());
     }
-    this.basket = new BasketList();
     block.addEventListener('click', evt => this.basket.add(evt));
   }
 
@@ -162,7 +168,6 @@ class BasketList {
         <div class="row justify-content-end cart total">${this.calcTotalProductsPrice()}<div>`;
   }
 }
-
 
 class BasketItem {
   constructor(product, quantity= 1) {

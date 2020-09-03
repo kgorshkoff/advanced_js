@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <button onclick="first()">First assignment</button>
+    <button onclick="second()">Second assignment</button>
+    <button onclick="reset()">Reset</button>
+    <div class="regexp">
+        <p>One: 'Hi Mary.' Two: 'Oh, hi.'</p>
+        <p>One: 'How are you doing?'</p>
+        <p>Two: 'I'm doing alright. How about you?'</p>
+        <p>One: 'Not too bad. The weather is great isn't it?'</p>
+        <p>Two: 'Yes. It's absolutely beautiful today.'</p>
+        <p>One: 'I wish it was like this more frequently.'</p>
+        <p>Two: 'Me too.'</p>
+        <p>One: 'So where are you going now?'</p>
+        <p>Two: 'I'm going to meet a friend of mine at the department store'</p>
+        <p>One: 'Going to do a little shopping?'</p>
+        <p>Two: 'Yeah, I have to buy some presents for my parents.'</p>
+        <p>One: 'What's the occasion?'</p>
+        <p>Two: 'It's their anniversary.'</p>
+        <p>One: 'That's great. Well, you better get going. You don't want to be late.'</p>
+        <p>Two: 'I'll see you next time.'</p>
+        <p>One: 'Sure.' Bye.'</p>
+    </div>
+</head>
+<body>
+<script>
+    function first() {
+        reset();
+        let block = document.querySelector('.regexp');
+        let newStr = block.innerHTML.replace(/\'/g, '\"');
+        block.innerHTML = newStr;
+    }
+
+    function second() {
+        reset();
+        let block = document.querySelector('.regexp');
+        let newStr = block.innerHTML.replace(/([^\w]+)'|'(\n)/g, '$1"$2');
+        block.innerHTML = newStr;
+    }
+
+    function reset() {
+        document.querySelector('.regexp').innerHTML = "<p>One: 'Hi Mary.' Two: 'Oh, hi.'</p>\n" +
+            "        <p>One: 'How are you doing?'</p>\n" +
+            "        <p>Two: 'I'm doing alright. How about you?'</p>\n" +
+            "        <p>One: 'Not too bad. The weather is great isn't it?'</p>\n" +
+            "        <p>Two: 'Yes. It's absolutely beautiful today.'</p>\n" +
+            "        <p>One: 'I wish it was like this more frequently.'</p>\n" +
+            "        <p>Two: 'Me too.'</p>\n" +
+            "        <p>One: 'So where are you going now?'</p>\n" +
+            "        <p>Two: 'I'm going to meet a friend of mine at the department store'</p>\n" +
+            "        <p>One: 'Going to do a little shopping?'</p>\n" +
+            "        <p>Two: 'Yeah, I have to buy some presents for my parents.'</p>\n" +
+            "        <p>One: 'What's the occasion?'</p>\n" +
+            "        <p>Two: 'It's their anniversary.'</p>\n" +
+            "        <p>One: 'That's great. Well, you better get going. You don't want to be late.'</p>\n" +
+            "        <p>Two: 'I'll see you next time.'</p>\n" +
+            "        <p>One: 'Sure.' Bye.'</p>";
+    }
+</script>
+
+</body>
+</html>

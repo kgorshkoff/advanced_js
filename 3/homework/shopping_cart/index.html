@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="src/layout/styles/normalize.css">
+    <link rel="stylesheet" href="src/layout/styles/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div class="logo">Интернет-магазин</div>
+        <button class="btn-cart" type="button">Корзина</button>
+    </header>
+    <div class="container d-none">
+        <div class="row justify-content-end cart" >
+            <div class="col-1">Товар</div>
+            <div class="col-1">Количество</div>
+            <div class="col-1">Цена</div>
+            <div class="col-1">Удалить?</div>
+        </div>
+    </div>
+    <main>
+        <div class="products"></div>
+    </main>
+</body>
+
+<script src="src/components/main.js"></script>
+<script src="https://kit.fontawesome.com/8cb832860f.js" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,22 @@
+[
+    {
+        "timestamp": 1599598442,
+        "action": "change",
+        "product": "Gamepad"
+    },
+    {
+        "timestamp": 1599598443,
+        "action": "change",
+        "product": "Gamepad"
+    },
+    {
+        "timestamp": 1599598444,
+        "action": "change",
+        "product": "Ноутбук"
+    },
+    {
+        "timestamp": 1599598444,
+        "action": "change",
+        "product": "Ноутбук"
+    }
+]

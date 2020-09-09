@@ -18,5 +18,75 @@
         "timestamp": 1599598444,
         "action": "change",
         "product": "Ноутбук"
+    },
+    {
+        "timestamp": 1599632294,
+        "action": "change",
+        "product": "Keyboard"
+    },
+    {
+        "timestamp": 1599632294,
+        "action": "del",
+        "product": "Keyboard"
+    },
+    {
+        "timestamp": 1599632297,
+        "action": "change",
+        "product": "Gamepad"
+    },
+    {
+        "timestamp": 1599632300,
+        "action": "change",
+        "product": "Gamepad"
+    },
+    {
+        "timestamp": 1599632301,
+        "action": "change",
+        "product": "Gamepad"
+    },
+    {
+        "timestamp": 1599632302,
+        "action": "del",
+        "product": "Gamepad"
+    },
+    {
+        "timestamp": 1599632302,
+        "action": "change",
+        "product": "Ноутбук"
+    },
+    {
+        "timestamp": 1599632303,
+        "action": "change",
+        "product": "Ноутбук"
+    },
+    {
+        "timestamp": 1599632304,
+        "action": "change",
+        "product": "Ноутбук"
+    },
+    {
+        "timestamp": 1599632305,
+        "action": "change",
+        "product": "Ноутбук"
+    },
+    {
+        "timestamp": 1599632305,
+        "action": "change",
+        "product": "Ноутбук"
+    },
+    {
+        "timestamp": 1599632306,
+        "action": "change",
+        "product": "Ноутбук"
+    },
+    {
+        "timestamp": 1599632307,
+        "action": "change",
+        "product": "Ноутбук"
+    },
+    {
+        "timestamp": 1599632307,
+        "action": "del",
+        "product": "Ноутбук"
     }
 ]

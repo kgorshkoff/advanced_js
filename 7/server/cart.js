@@ -17,7 +17,7 @@ const total = (cart) => {
   cart.countGoods = cart.contents.reduce((sum, current) => {return sum + current.quantity} ,0);
   cart.amount = cart.contents.reduce((sum, current) => {return sum + (current.price * current.quantity)} ,0);
   return cart
-}
+};
 
 module.exports = {
   add,

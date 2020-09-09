@@ -28,11 +28,11 @@ const handler = (req, res, action, file) => {
 };
 
 const logger = (url, cartJson, action, logfile = "./server/db/stats.json") => {
+    if (!url) {return};
+
     fs.readFile(logfile, 'utf-8', (err, data) => {
         url = parseInt(url.substring(1));
         cartJson = JSON.parse(cartJson);
-
-        if (!url) {return};
 
         if (err) {
             data = [];

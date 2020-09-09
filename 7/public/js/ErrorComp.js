@@ -1,18 +1,18 @@
 Vue.component('error', {
-    data(){
+    data() {
         return {
             text: ''
         }
     },
     methods: {
-      setError(error){
-          this.text = error
-      }
+        setError(error) {
+            this.text = error
+        }
     },
     computed: {
-      isVisible(){
-          return this.text !== ''
-      }
+        isVisible() {
+            return this.text !== ''
+        }
     },
     template: `
     <div class="error-block" v-if="isVisible"> 

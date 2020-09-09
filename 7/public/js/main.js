@@ -6,7 +6,7 @@ const app = new Vue({
         userSearch: '',
     },
     methods: {
-        getJson(url){
+        getJson(url) {
             return fetch(url)
                 .then(result => result.json())
                 .catch(error => {
@@ -21,9 +21,9 @@ const app = new Vue({
                 },
                 body: JSON.stringify(data)
             }).then(result => result.json())
-              .catch(error => {
-                  this.$refs.error.setError(error);
-              });
+                .catch(error => {
+                    this.$refs.error.setError(error);
+                });
         },
         putJson(url, data) {
             return fetch(url, {
@@ -33,9 +33,9 @@ const app = new Vue({
                 },
                 body: JSON.stringify(data)
             }).then(result => result.json())
-              .catch(error => {
-                  this.$refs.error.setError(error);
-              });
+                .catch(error => {
+                    this.$refs.error.setError(error);
+                });
         },
         deleteJson(url) {
             return fetch(url, {
@@ -44,9 +44,9 @@ const app = new Vue({
                     "Content-Type": "application/json"
                 },
             }).then(result => result.json())
-              .catch(error => {
-                  this.$refs.error.setError(error);
-              });
+                .catch(error => {
+                    this.$refs.error.setError(error);
+                });
         },
     },
     mounted() {
